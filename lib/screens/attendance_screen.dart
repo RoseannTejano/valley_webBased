@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
+import 'package:flutter/foundation.dart' show kIsWeb;
 import '../utils/routes.dart';
 import '../widgets/text_widget.dart';
 
@@ -53,10 +53,13 @@ class AttendanceScreen extends StatelessWidget {
                       final data = snapshot.requireData;
                       return Container(
                         height: 500,
+                        // width: 200,
                         decoration: const BoxDecoration(
                           color: Colors.white,
                         ),
                         child: SingleChildScrollView(
+                          scrollDirection:
+                              !kIsWeb ? Axis.horizontal : Axis.vertical,
                           child: DataTable(columns: [
                             DataColumn(
                               label: TextBold(

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:valley/utils/routes.dart';
-
+import 'package:flutter/foundation.dart' show kIsWeb;
 import '../widgets/text_widget.dart';
 
 class FacultyScreen extends StatelessWidget {
@@ -64,19 +64,19 @@ class FacultyScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Image.asset('assets/images/profile.png',
-                                height: 200),
+                                height: kIsWeb ? 200 : 100),
                             const SizedBox(
                               height: 20,
                             ),
                             TextBold(
                               text: data['name'],
-                              fontSize: 38,
+                              fontSize: kIsWeb ? 38 : 15,
                               color: Colors.white,
                             ),
                           ],
                         ),
                         const SizedBox(
-                          width: 50,
+                          width: kIsWeb ? 50 : 10,
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -99,6 +99,7 @@ class FacultyScreen extends StatelessWidget {
                               height: 30,
                             ),
                             Container(
+                              width: kIsWeb ? 300 : 170,
                               decoration: BoxDecoration(
                                   color: Colors.blue,
                                   borderRadius: BorderRadius.circular(100)),
@@ -113,11 +114,11 @@ class FacultyScreen extends StatelessWidget {
                                   icon: const Icon(
                                     Icons.calendar_month_outlined,
                                     color: Colors.white,
-                                    size: 42,
+                                    size: kIsWeb ? 42 : 20,
                                   ),
                                   label: TextBold(
                                     text: 'View Schedule',
-                                    fontSize: 24,
+                                    fontSize: kIsWeb ? 24 : 15,
                                     color: Colors.white,
                                   ),
                                 ),
@@ -127,6 +128,7 @@ class FacultyScreen extends StatelessWidget {
                               height: 20,
                             ),
                             Container(
+                              width: kIsWeb ? 300 : 170,
                               decoration: BoxDecoration(
                                   color: Colors.blue,
                                   borderRadius: BorderRadius.circular(100)),
@@ -143,11 +145,11 @@ class FacultyScreen extends StatelessWidget {
                                   icon: const Icon(
                                     Icons.schedule_outlined,
                                     color: Colors.white,
-                                    size: 42,
+                                    size: kIsWeb ? 42 : 20,
                                   ),
                                   label: TextBold(
                                     text: 'View Workload',
-                                    fontSize: 24,
+                                    fontSize: kIsWeb ? 24 : 15,
                                     color: Colors.white,
                                   ),
                                 ),

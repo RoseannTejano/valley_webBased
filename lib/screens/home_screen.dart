@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:valley/utils/querysize_device.dart';
 import 'package:valley/utils/routes.dart';
 import 'package:valley/widgets/text_widget.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class HomeScreen extends StatelessWidget {
   final box = GetStorage();
@@ -27,20 +29,19 @@ class HomeScreen extends StatelessWidget {
         ),
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20),
+            padding: EdgeInsets.only(left: kIsWeb ? 20 : 0, right: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const SizedBox(
-                  height: 30,
+                SizedBox(
+                  height: kIsWeb ? 30 : deviceSize.height * .05,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
                       onPressed: () {
-                        Navigator.pushReplacementNamed(
-                            context, Routes().landingscreen);
+                        Navigator.pop(context);
                       },
                       icon: const Icon(
                         Icons.arrow_back_ios_new_rounded,
@@ -50,7 +51,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     TextBold(
                       text: 'Welcome to CSS Faculty',
-                      fontSize: 48,
+                      fontSize: kIsWeb ? 48 : 22,
                       color: Colors.white,
                     ),
                     const SizedBox(),
@@ -81,52 +82,107 @@ class HomeScreen extends StatelessWidget {
                       }
 
                       final data = snapshot.requireData;
-                      return Expanded(
-                        child: SizedBox(
-                          child: GridView.builder(
-                            itemCount: data.docs.length,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 6),
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(5.0),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    box.write('id', data.docs[index].id);
-                                    Navigator.pushReplacementNamed(
-                                        context, Routes().facultyscreen);
+                      return kIsWeb
+                          ? Expanded(
+                              child: SizedBox(
+                                child: GridView.builder(
+                                  itemCount: data.docs.length,
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 6),
+                                  itemBuilder: (context, index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          box.write('id', data.docs[index].id);
+                                          Navigator.pushReplacementNamed(
+                                              context, Routes().facultyscreen);
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.white24,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Image.asset(
+                                                  'assets/images/profile.png',
+                                                  height:
+                                                      deviceSize.width < 1300
+                                                          ? 100
+                                                          : 125),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              TextBold(
+                                                text: data.docs[index]['name'],
+                                                fontSize: 28,
+                                                color: Colors.white,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    );
                                   },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white24,
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Image.asset('assets/images/profile.png',
-                                            height: 125),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        TextBold(
-                                          text: data.docs[index]['name'],
-                                          fontSize: 28,
-                                          color: Colors.white,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
                                 ),
-                              );
-                            },
-                          ),
-                        ),
-                      );
+                              ),
+                            )
+                          : Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 30.0),
+                                child: ListView.builder(
+                                    itemCount: data.docs.length,
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            30, 5, 5, 5.0),
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            box.write(
+                                                'id', data.docs[index].id);
+                                            Navigator.pushReplacementNamed(
+                                                context,
+                                                Routes().facultyscreen);
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Colors.white24,
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Image.asset(
+                                                    'assets/images/profile.png',
+                                                    height: 125),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                                TextBold(
+                                                  text: data.docs[index]
+                                                      ['name'],
+                                                  fontSize: 28,
+                                                  color: Colors.white,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }),
+                              ),
+                            );
                     })
               ],
             ),

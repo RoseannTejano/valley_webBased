@@ -101,8 +101,9 @@ class ScheduleScreen extends StatelessWidget {
                     alignment: Alignment.bottomRight,
                     child: TextButton.icon(
                       onPressed: () {
-                        Navigator.pushReplacementNamed(
-                            context, Routes().facultyscreen);
+                        Navigator.pop(context);
+                        // Navigator.pushReplacementNamed(
+                        //     context, Routes().facultyscreen);
                       },
                       icon: const Icon(
                         Icons.arrow_back_ios_new_rounded,

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:valley/utils/routes.dart';
 import 'package:valley/widgets/button_widget.dart';
 import 'package:valley/widgets/text_widget.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+
+import '../bulletin_screen.dart';
 
 class LandingScreen extends StatelessWidget {
   const LandingScreen({super.key});
@@ -15,7 +18,7 @@ class LandingScreen extends StatelessWidget {
         decoration: const BoxDecoration(
           color: Colors.blue,
           image: DecorationImage(
-            opacity: 110,
+            opacity: 0.4,
             image: AssetImage(
               'assets/images/back.jpg',
             ),
@@ -41,12 +44,12 @@ class LandingScreen extends StatelessWidget {
               ),
               TextBold(
                 text: 'COLLEGE of',
-                fontSize: 48,
+                fontSize: !kIsWeb ? 20 : 48,
                 color: Colors.white,
               ),
               TextBold(
                 text: 'COMPUTER STUDIES',
-                fontSize: 48,
+                fontSize: !kIsWeb ? 20 : 48,
                 color: Colors.white,
               ),
               const SizedBox(
@@ -65,18 +68,23 @@ class LandingScreen extends StatelessWidget {
                   ButtonWidget(
                     fontColor: Colors.black,
                     radius: 100,
+                    width: !kIsWeb ? 30 : 300,
                     height: 60,
                     color: Colors.white,
-                    label: 'Faculty Bulletin',
+                    label: '    Faculty Bulletin    ',
                     onPressed: () {
-                      Navigator.pushReplacementNamed(
-                          context, Routes().facultybulletinscreen);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FacultyBulletinScreen()),
+                      );
                     },
                   ),
                   ButtonWidget(
                     fontColor: Colors.black,
                     radius: 100,
                     height: 60,
+                    width: !kIsWeb ? 30 : 300,
                     color: Colors.white,
                     label: 'Student Attendance',
                     onPressed: () {

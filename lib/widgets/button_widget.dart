@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:valley/widgets/text_widget.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class ButtonWidget extends StatelessWidget {
   final String label;
@@ -15,8 +16,8 @@ class ButtonWidget extends StatelessWidget {
       {super.key,
       required this.label,
       required this.onPressed,
-      this.width = 300,
-      this.fontSize = 18,
+      this.width,
+      this.fontSize = kIsWeb ? 18 : 13,
       this.height = 50,
       this.radius = 5,
       this.color = Colors.blue,
@@ -26,7 +27,7 @@ class ButtonWidget extends StatelessWidget {
     return MaterialButton(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(radius!)),
-        minWidth: width,
+        minWidth: width ?? 300,
         height: height,
         color: color,
         onPressed: onPressed,
