@@ -44,6 +44,7 @@ dependencies:
   get_storage:
   cell_calendar:
   gap: ^3.0.1
+  acs_nfc: ^1.0.7
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +62,15 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  # This section identifies this Flutter project as a plugin project.
+  # The androidPackage and pluginClass identifiers should not ordinarily
+  # be modified. They are used by the tooling to maintain consistency when
+  # adding or updating assets for this project.
+  plugin:
+    platforms:
+      android:
+        package: com.acs.nfc.acs_nfc
+        pluginClass: AcsNfcPlugin
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

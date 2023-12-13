@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 
 import '../utils/routes.dart';
 import '../widgets/text_widget.dart';
+import 'package:acs_nfc/acs_nfc.dart';
 
 class ScheduleScreen extends StatelessWidget {
   final box = GetStorage();
