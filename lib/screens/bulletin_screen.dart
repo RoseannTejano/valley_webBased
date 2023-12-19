@@ -147,12 +147,12 @@ class FacultyBulletinScreen extends StatelessWidget {
                         color: Colors.white,
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       Card(
                         child: SizedBox(
-                          height: 500,
-                          width: 400,
+                          height: 350,
+                          width: 350,
                           child: Padding(
                             padding: const EdgeInsets.only(left: 20),
                             child: StreamBuilder<QuerySnapshot>(
@@ -179,7 +179,7 @@ class FacultyBulletinScreen extends StatelessWidget {
 
                                   final data = snapshot.requireData;
                                   return SizedBox(
-                                    height: 300,
+                                    height: 200,
                                     width: double.infinity,
                                     child: ListView.builder(
                                       itemCount: data.docs.length,
@@ -228,8 +228,8 @@ class FacultyBulletinScreen extends StatelessWidget {
                       ),
                       Card(
                         child: SizedBox(
-                          height: 500,
-                          width: 400,
+                          height: 300,
+                          width: 300,
                           child: ListView.separated(
                             itemCount: 20,
                             separatorBuilder: (context, index) {
@@ -277,8 +277,8 @@ class FacultyBulletinScreen extends StatelessWidget {
                               ),
                               Card(
                                 child: Container(
-                                  width: 500,
-                                  height: 387,
+                                  width: 300,
+                                  height: 300,
                                   child: CellCalendar(
                                     onCellTapped: (date) {
                                       showDialog(
@@ -316,8 +316,8 @@ class FacultyBulletinScreen extends StatelessWidget {
                                                     snapshot.requireData;
                                                 return Dialog(
                                                   child: SizedBox(
-                                                    height: 500,
-                                                    width: 500,
+                                                    height: 300,
+                                                    width: 300,
                                                     child: ListView.builder(
                                                       itemBuilder:
                                                           (context, index) {
@@ -362,8 +362,8 @@ class FacultyBulletinScreen extends StatelessWidget {
                               ),
                               Card(
                                 child: SizedBox(
-                                  height: 500,
-                                  width: 400,
+                                  height: 300,
+                                  width: 300,
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 20),
                                     child: StreamBuilder<QuerySnapshot>(
@@ -440,8 +440,8 @@ class FacultyBulletinScreen extends StatelessWidget {
                               ),
                               Card(
                                 child: SizedBox(
-                                  height: 500,
-                                  width: 400,
+                                  height: 300,
+                                  width: 300,
                                   child: ListView.separated(
                                     physics: NeverScrollableScrollPhysics(),
                                     itemCount: 20,

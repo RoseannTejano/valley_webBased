@@ -16,7 +16,7 @@ class LandingScreen extends StatelessWidget {
         height: double.infinity,
         width: double.infinity,
         decoration: const BoxDecoration(
-          color: Colors.blue,
+          color: Color.fromARGB(255, 0, 45, 87),
           image: DecorationImage(
             opacity: 0.4,
             image: AssetImage(
