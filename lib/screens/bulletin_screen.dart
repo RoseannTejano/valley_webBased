@@ -72,8 +72,8 @@ class FacultyBulletinScreen extends StatelessWidget {
                       Card(
                         child: Card(
                           child: SizedBox(
-                            width: deviceSize.width < 1300 ? 400 : 500,
-                            height: 487,
+                            width: deviceSize.width < 1300 ? 300 : 300,
+                            height: 250,
                             child: CellCalendar(
                               onCellTapped: (date) {
                                 showDialog(
